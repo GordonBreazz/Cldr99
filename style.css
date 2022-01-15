@@ -386,7 +386,21 @@
     background-color: #ffffff;
 }
 
+.calendar-archives .today {
+    background-color: #e6e6e6 !important;
+}
+
+.calendar-archives a.today:hover {
+    background-color: unset  !important;
+}
+
+
 .calendar-archives.calendrier .day.has-posts a:hover { 
     color: #fff;    
 }
+
+.calendar-archives .today {
+    background-color: #e6e6e6 !important;
+}
+
 /*# sourceMappingURL=calendrier.css.map */
