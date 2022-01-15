@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container99" id="cldr">
+        <div class="row99">
+            <div class="column99">
+                
+                {{1}}
+            </div>
+            <div class="column99">
+                
+                {{2}}
+            </div>
+            <div class="column99">
+                
+                {{3}}
+            </div>
+        </div>
+        <div class="row99">
+            <div class="column99">
+                
+                {{4}}
+            </div>
+            <div class="column99">
+                
+                {{5}}
+            </div>
+            <div class="column99">
+                
+                {{6}}
+            </div>
+        </div>
+        <div class="row99">
+            <div class="column99">
+                
+                {{7}}
+            </div>
+            <div class="column99">
+                
+                {{8}}
+            </div>
+            <div class="column99">
+                
+                {{9}}
+            </div>
+        </div>
+        <div class="row99">
+            <div class="column99">
+                
+                {{10}}
+            </div>
+            <div class="column99">
+                
+                {{11}}
+            </div>
+            <div class="column99">
+                
+                {{12}}
+            </div>
+        </div>
+    </div>
+    <script>
+        function calendar(m) {
+            m = m - 1
+            if (m < 0 || m > 11) return "<h3>error</h3>"
+            var template = `
+        <div
+                    class="calendar-archives arw-theme1 arw-theme2 calendrier pastel classiclight classicdark twentytwelve twentythirteen twentyfourteen twentyfourteenlight">
+                    <div class="calendar-navigation">
+                        <div class="menu-container months"><a class="title" href="javascript:{{func}}({{month}}, 0);">{{name}}</a></div>
+                    </div>
+
+                    <div class="week-row">
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 1);">1</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 2);">2</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 3);">3</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 4);">4</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 5);">5</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 6);">6</a>
+                        </span>
+                        <span class="day has-posts last">
+                            <a href="javascript:{{func}}({{month}}, 7);">7</a>
+                        </span>
+                    </div>
+                    <div class="week-row">
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 8);">8</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 9);">9</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 10);">10</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 11);">11</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 12);">12</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 13);">13</a>
+                        </span>
+                        <span class="day has-posts last">
+                            <a href="javascript:{{func}}({{month}}, 14);">14</a>
+                        </span>
+                    </div>
+                    <div class="week-row">
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 15);">15</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 16);">16</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 17);">17</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 18);">18</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 19);">19</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 20);">20</a>
+                        </span>
+                        <span class="day last has-posts">
+                            <a href="javascript:{{func}}({{month}}, 21);">21</a>
+                        </span>
+                    </div>
+                    <div class="week-row">
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 22);">22</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 23);">23</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 24);">24</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 25);">25</a>
+                        </span>
+                        <span class="day has-posts"><a href="javascript:{{func}}({{month}}, 26);">26</a></span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 27);">27</a>
+                        </span>
+                        <span class="day last has-posts">
+                            <a href="javascript:{{func}}({{month}}, 28);">28</a>
+                        </span>
+                    </div>
+        `,
+                templateTails = [
+                    `
+            <div class="week-row">
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 29);">29</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 30);">30</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 31);">31</a>
+                        </span>
+                        <span class="day noday"> </span>
+                        <span class="day noday"> </span>
+                        <span class="day noday"> </span>
+                        <span class="day noday last"> </span>
+                    </div>
+                </div>            
+
+            `,
+                    `
+            <div class="week-row">
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 29);">29</a>
+                        </span>
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 30);">30</a>
+                        </span>                        
+                        <span class="day noday"> </span>
+                        <span class="day noday"> </span>
+                        <span class="day noday"> </span>
+                        <span class="day noday"> </span>
+                        <span class="day noday last"> </span>
+                    </div>
+                </div>
+            `,
+                    `
+
+            <div class="week-row">
+                        <span class="day has-posts">
+                            <a href="javascript:{{func}}({{month}}, 29);">29</a>
+                        </span>
+                        <span class="day noday"> </span>                        
+                        <span class="day noday"> </span>                        
+                        <span class="day noday"> </span>                        
+                        <span class="day noday"> </span>
+                        <span class="day noday"> </span>
+                        <span class="day noday last"> </span>
+                    </div>
+                </div>
+            
+            `
+                ]                
+            var mArray = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
+                nArray = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"]                
+            var result = template + templateTails[31 - mArray[m]]
+            result = result.replace("{{name}}", nArray[m]).replace(/{{month}}/g, m + 1).replace(/{{func}}/g, "FindPosts")
+            return result
+        }
+        function FindPosts(m, d) {
+            console.log(m + ' ' + d)
+        }
+        console.log("-------------------------")
+        window.addEventListener('load', function () {
+            var cldr = document.getElementById("cldr");
+            //console.log(cldr)
+            var st = cldr.innerHTML
+            for (var i=1; i<=12; i++) {
+                console.log(i)
+                st = st.replace('{{' + i + '}}', calendar(i))
+            }
+            cldr.innerHTML = st
+        })
+    </script>
+</body>
+
+</html>
