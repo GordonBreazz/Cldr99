@@ -1,4 +1,30 @@
 <?php
+/**
+ * Calendar99 - An easy, clean and simple way to add year post calendar on site.
+ *
+ *
+ * @package   Calendar99
+ * @author    Egor Konnov <admin@cbs-uu.ru>
+ * @copyright 2022 Egor Konnov
+ * @license   MIT http://opensource.org/licenses/MIT
+ * @version   1
+ * @link      https://github.com/GordonBreazz
+ */
+
+/*
+Plugin Name:Calendar99
+Plugin URI:  https://github.com/GordonBreazz
+Description: An easy, clean and simple way to add year post calendar on site.
+Author:        Egor Konnov
+Author URI:   https://github.com/GordonBreazz
+Version:      1
+License:      MIT
+License URI:  license.txt
+Text Domain:  calendar99
+Domain Path:  /languages
+Requires PHP: 5.2
+Requires at least: 3.6
+*/
 
 /* Виджет Calendar99 Widget */
 class calendar99_widget extends WP_Widget {
@@ -21,120 +47,27 @@ class calendar99_widget extends WP_Widget {
         echo $args['before_widget'] . $args['before_title'] . $title . $args['after_title']; ?>
     <div id="cldr">
     </div>
-    <script>
-        function monthCalendar(m) {
-            m = m - 1
-            if (m < 0 || m > 11) return "<h3>error</h3>"
-            var header = `
-            <div
-                    class="calendar-archives arw-theme1 arw-theme2 calendrier pastel classiclight classicdark twentytwelve twentythirteen twentyfourteen twentyfourteenlight">
-                    <div class="calendar-navigation">
-                        <div class="menu-container months"><a class="title" href="javascript:{{func}}({{month}}, 0);">{{name}}</a></div>
-                    </div>
-            
-            `,
-                rowHeader = '<div class="week-row">',
-                day = `
-                <span class="day has-posts last">
-                            <a class="today" href="javascript:{{func}}({{month}}, {{i}});">{{i}}</a>
-                </span>                
-                `,
-                noDay = '<span class="day noday last"> </span>',
-                endTag = '</div>',
-                mArray = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
-                nArray = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
-                mst = header.replace("{{name}}", nArray[m]).replace('{{month}}', m + 1).replace('{{func}}', "FindPosts"),
-                c = 0,
-                tmp,
-                today = new Date(),
-                dd = today.getDate(),
-                mm = today.getMonth() + 1;
-            // console.log('Date:', dd, mm)
-            for (var j = 0; j < 5; j++) {
-                mst += rowHeader
-                for (var i = 0; i < 7; i++) {
-                    c++
-                    if (c <= mArray[m]) tmp = day
-                    else tmp = noDay
-                    if (i != 6) tmp = tmp.replace('last', '')
-                    tmp = tmp.replace("{{name}}", nArray[m]).replace('{{month}}', m + 1).replace('{{func}}', "FindPosts").replace(/{{i}}/g, c)
-                    if (!(m + 1 == mm && c == dd)) tmp = tmp.replace('class="today"', '')
-                    mst += tmp
-                }
-                mst += endTag
-            }
-            mst += endTag
-            // console.log('Q==============================')
-            // console.log(mst)            
-            // console.log('==============================')
-            return mst
-        }
-
-        function fullCalendar() {
-            var grid = `
-            <div class="container99">
-                <div class="row99">
-                    <div class="column99">                
-                        {{1}}
-                    </div>
-                    <div class="column99">                
-                        {{2}}
-                    </div>
-                    <div class="column99">                
-                        {{3}}
-                    </div>
-                </div>
-                <div class="row99">
-                    <div class="column99">                
-                        {{4}}
-                    </div>
-                    <div class="column99">                
-                        {{5}}
-                    </div>
-                    <div class="column99">                
-                        {{6}}
-                    </div>
-               </div>
-               <div class="row99">
-                    <div class="column99">                
-                        {{7}}
-                    </div>
-                    <div class="column99">                
-                        {{8}}
-                    </div>
-                    <div class="column99">                
-                        {{9}}
-                    </div>
-               </div>
-               <div class="row99">
-                    <div class="column99">                
-                        {{10}}
-                    </div>
-                    <div class="column99">                
-                        {{11}}
-                    </div>
-                    <div class="column99">                
-                        {{12}}
-                    </div>
-               </div>
-            </div>
-            `
-            for (var i = 1; i <= 12; i++)
-                grid = grid.replace('{{' + i + '}}', monthCalendar(i))
-            return grid
-        }
-
-
-        function FindPosts(m, d) {
-            console.log(m + ' ' + d)
-        }
-        // console.log("-------------------------")
-        window.addEventListener('load', function () {
-            var cldr = document.getElementById("cldr");
-            //console.log(cldr)  
-            cldr.innerHTML = fullCalendar()
-        })
-    </script>
+<?php
+  $category="news";
+  $tag="etotdenvistorii";
+  global $wp_query;
+            $args = array(
+                'category_name' => $category, 
+                'tag' => $tag, //must use tag id for this field
+                'posts_per_page' => -1,
+                'post_status' => "publish",
+                'order' => 'ASC'
+            ); //get all posts
+echo '<script>';
+echo 'var links = [];';
+   $posts = get_posts($args);
+            foreach ($posts as $post) :
+//echo '<a href="'.get_permalink($post->ID).'">'.$post->post_title.' '.get_the_date( 'n-j', $post).'</a><br>';
+echo 'links["'.get_the_date( 'n-j', $post).'"]="'.get_permalink($post->ID).'";';
+      //do stuff 
+         endforeach;
+echo '</script>';
+?>
         <?php echo $args['after_widget'];
     }
 
@@ -160,4 +93,21 @@ class calendar99_widget extends WP_Widget {
 function wpschool_register_widget() {
     register_widget( 'calendar99_widget' );
 }
+
+function wpb_adding_scripts() {
+ 
+wp_register_script('my_amazing_script', plugins_url('js/script.js', __FILE__), array(),'1', true);
+ 
+wp_enqueue_script('my_amazing_script');
+}
+  
+add_action( 'wp_enqueue_scripts', 'wpb_adding_scripts' );  
+
+function wpb_adding_styles() {
+wp_register_style('my_stylesheet', plugins_url('css/style.css', __FILE__));
+wp_enqueue_style('my_stylesheet');
+}
+add_action( 'wp_enqueue_scripts', 'wpb_adding_styles' );  
+
 add_action( 'widgets_init', 'wpschool_register_widget' );
+
